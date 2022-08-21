@@ -2,19 +2,35 @@ import { useState } from "react";
 
 import React from "react";
 
-function AddTask() {
+function AddTask({addTask}) {
 const [title, setTitle] =  useState('');
 const [time, setTime] = useState('');
 const [reminder, setReminder] = useState(false);
 
+function onSubmit(e){
+  e.preventDefault();
+
+  if(!title){
+    alert('Please Add a Task')
+    return
+  }
+
+  addTask({title, time, reminder})
+
+  setTitle('')
+  setTime('')
+  setReminder(false);
+
+}
+
 
 
   return (
-    <form>
+    <form onSubmit={onSubmit}>
 
       <div className="title">
-        <label htmlFor="title">Set Title:</label>
-        <input type="text" id="title" placeholder="Add Title" value={title} onChange={(e) => setTitle(e.target.value)}/>
+        <label htmlFor="title">Set Task:</label>
+        <input type="text" id="title" placeholder="Add Task" value={title} onChange={(e) => setTitle(e.target.value)}/>
       </div>
 
       <div className="time">
@@ -24,7 +40,7 @@ const [reminder, setReminder] = useState(false);
 
       <div className="reminder">
         <label htmlFor="reminder">Set Reminder:</label>
-        <input type="checkbox" id="reminder"  value={reminder} onChange={(e) => setReminder(e.currentTarget.checked)}/>
+        <input type="checkbox" id="reminder" checked={reminder}  value={reminder} onChange={(e) => setReminder(e.currentTarget.checked)}/>
       </div>
 
       <input type="submit" value="Add Task "/>

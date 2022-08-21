@@ -66,6 +66,7 @@ header button{
   background-color: #f4f4f4;
   padding: 1rem;
   font-weight: 500;
+  border-radius: 6px;
 }
 .task-reminder{
   border-left: 4px solid rgb(4, 223, 8);
@@ -101,6 +102,7 @@ form .title, .time{
 .reminder{
   display: flex;
   justify-content: space-between;
+  width: 50%;
 }
 form input{
   padding: 12px 2px;
