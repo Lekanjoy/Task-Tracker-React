@@ -11,7 +11,7 @@ function onSubmit(e){
   e.preventDefault();
 
   if(!title){
-    alert('Please Add a Task')
+    alert('Please Add a Task');
     return
   }
 

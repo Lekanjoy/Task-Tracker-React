@@ -1,13 +1,8 @@
 
-function Buttton({ color, text, bgc, onClick }) {
 
-  return (
-    
-    <button style={{ color: color, backgroundColor: bgc }} onClick={onClick}>
-      {text}
-    </button>
-  );
-  
+function Button({ toggleShowAddTask, bgc, text }) {
+
+  return <button style={ { backgroundColor:bgc } } onClick={toggleShowAddTask}>{text}</button>;
 }
 
-export default Buttton;
+export default Button;

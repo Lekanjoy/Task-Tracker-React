@@ -1,75 +1,41 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import tasksData from "./Components/tasksData";
 import Header from "./Components/Header";
 import Tasks from "./Components/Tasks";
 import AddTask from "./Components/AddTask";
 
 function App() {
-  const [task, setTask] = useState([
-    {
-      id: 1,
-      text: "Gym",
-      day_time: "Saturday@5:00 PM",
-      reminder: true,
-    },
+  // Tasks Data State
+  const [tasks, setTasks] = useState(tasksData);
 
-    {
-      id: 2,
-      text: "Dispose Trash",
-      day_time: "Saturday@ 11:00 AM",
-      reminder: false,
-    },
-
-    {
-      id: 3,
-      text: "Call Dad",
-      day_time: "Tuesday@ 01:15 PM",
-      reminder: false,
-    },
-
-    {
-      id: 4,
-      text: "Laundry",
-      day_time: "Thursday@ 07:00 AM",
-      reminder: true,
-    },
-
-    {
-      id: 5,
-      text: "Record Podcast",
-      day_time: "Monday@ 03:00 PM",
-      reminder: true,
-    },
-  ]);
-
-  // Delete Task
-  const deleteTask = (id) => {
-    setTask(task.filter(item => item.id !== id));
-    // console.log(task.filter(item => item.id > 3 ? `${item.id} Id is greater tha 2` : ''));
-
-    console.log("delete", id);
-  }
+  //Add Task State
+  const [showAddTask, setShowAddTask] = useState(false);
 
   // Toggle Add Task
-  const [showAdd, setShowAdd] = useState(false);
-
-  function toggleAdd() {
-    setShowAdd((prevState) => !prevState);
+  function toggleShowAddTask() {
+    setShowAddTask((prevShowAddTask) => !prevShowAddTask);
   }
 
-  // Add Task
-  function addTask(taskItem) {
-    const id = Math.floor(Math.random() * 100) + 1;
-    const newTask = { id, ...taskItem };
-    console.log(newTask);
-    // setTask(prevTask => [prevTask, taskItem])
+  // Delete Task
+  function deleteTask(id) {
+    // setTasks((prevTask) => prevTask.filter(task => task.id !== id));
+   setTasks( tasks.filter((task) => task.id !== id));
+ 
+    console.log("deleted", id);
   }
+
+   let mammed = tasks.filter(task => task.id !== 3)
+   console.log(mammed);
 
   return (
-    <div className="App">
+    <div className="App bg-body">
       <div className="container">
-        <Header onAdd={toggleAdd} showAdd={showAdd} />
-        {showAdd && <AddTask addTask={addTask} />}
-        <Tasks task={task} onDelete={deleteTask} />
+        <Header
+          showAddTask={showAddTask}
+          toggleShowAddTask={toggleShowAddTask}
+        />
+        {showAddTask && <AddTask />}
+        <Tasks tasks={tasks} deleteTask={deleteTask} />
       </div>
     </div>
   );

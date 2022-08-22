@@ -1,12 +1,11 @@
 import Task from "./Task"
 
-function Tasks(props) {
-
+function Tasks({ tasks, deleteTask }) {
   return (
-    <div className='tasks'>
-        <Task props={props} onDelete={props.onDelete} />  
-     </div>
-  )
+    <div className="tasks">
+      <Task tasks={tasks} deleteTask={deleteTask} />
+    </div>
+  );
 }
 
 export default Tasks

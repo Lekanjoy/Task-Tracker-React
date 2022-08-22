@@ -1,12 +1,15 @@
 import Button from "./Buttton";
 
-function Header({onAdd, showAdd}) {
-
-
+function Header({ showAddTask, toggleShowAddTask }) {
   return (
-    <header>
+    <header className=" px-3">
       <h3>Task Manager</h3>
-      <Button color="white" bgc={showAdd ? 'red' : 'green'} text={showAdd ? 'Close' : 'Add'} onClick={onAdd} />
+      <Button
+        showAddTask={showAddTask}
+        toggleShowAddTask={toggleShowAddTask}
+        text={showAddTask ? "Close" : "Add"}
+        bgc={showAddTask ? "red" : "green"}
+      />
     </header>
   );
 }
