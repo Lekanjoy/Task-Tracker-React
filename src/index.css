@@ -22,9 +22,8 @@
 .container{
   border: 2px solid rgba(87, 78, 78, .5);
   border-top-color: #fff;
-  width: 400px;
+  width: 300px;
   height: 500px;
-  overflow-y: scroll;
   border-radius: 4px;
   position: relative;
 }
@@ -34,7 +33,7 @@ header{
   justify-content: space-between;
   position: fixed;
   z-index: 1;
-  width: 396px;
+  width: 296px;
   /* width: 100%; */
   color: white;
   background-color: rgb(42, 36, 36);
@@ -42,7 +41,6 @@ header{
 }
 header button{
   padding: 2px 12px;
-  background-color: green;
   border: none;
   outline: none;
   border-radius: 5px;

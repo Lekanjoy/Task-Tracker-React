@@ -8,34 +8,49 @@ function App() {
   // Tasks Data State
   const [tasks, setTasks] = useState(tasksData);
 
-  //Add Task State
+  //Show Task State
   const [showAddTask, setShowAddTask] = useState(false);
 
-  // Toggle Add Task
+  // Toggle AddTask
   function toggleShowAddTask() {
     setShowAddTask((prevShowAddTask) => !prevShowAddTask);
   }
 
   // Delete Task
   function deleteTask(id) {
-    // setTasks((prevTask) => prevTask.filter(task => task.id !== id));
-   setTasks( tasks.filter((task) => task.id !== id));
- 
-    console.log("deleted", id);
+    setTasks(tasks.filter(task => task.id !== id));
+
   }
 
-   let mammed = tasks.filter(task => task.id !== 3)
-   console.log(mammed);
+  // AddTask Function
+  function addTask(newTask) {
+    const id = Math.floor(Math.random() * 100) + 1;
+    const updatedTask = { ...newTask, id };
+    setTasks((prevTasks) => [...prevTasks, updatedTask]);
+  }
+
+  //   Toggle Reminder on DoubleClick
+  function toggleReminder(id) {
+    setTasks(
+      tasks.map((task) => {
+        return task.id === id ? { ...task, reminder: !task.reminder } : task;
+      })
+    );
+  }
 
   return (
     <div className="App bg-body">
-      <div className="container">
+      <div className="container overflow-y-auto sm:w-96">
         <Header
           showAddTask={showAddTask}
           toggleShowAddTask={toggleShowAddTask}
         />
-        {showAddTask && <AddTask />}
-        <Tasks tasks={tasks} deleteTask={deleteTask} />
+        {showAddTask && <AddTask addTask={addTask} />}
+       { tasks.length === 0 ? <h1 className="flex justify-center items-center w-full h-full text-lg text-teal-700">No Tasks Yet ! !</h1> : <Tasks
+          tasks={tasks}
+          deleteTask={deleteTask}
+          toggleReminder={toggleReminder}
+        />}
       </div>
     </div>
   );

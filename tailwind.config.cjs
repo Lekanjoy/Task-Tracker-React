@@ -8,6 +8,10 @@ module.exports = {
         body: " rgb(237, 232, 236)",
       },
     },
+    screens:{
+      sm: '400px',
+      md: '768px'
+    }
   },
   plugins: [],
 };
